@@ -6,7 +6,7 @@ var port = process.env.PORT;
 mongoose.Promise = global.Promise;
 
 
-mongoose.connect("mongodb+srv://gmorales:Metallica159@cluster0.mciqz.mongodb.net/portafolio?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGOPORT)
     .then(() => {
         console.log('Conexion con exito');
         //creacion del servidor
