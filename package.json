@@ -10,10 +10,12 @@
   "author": "Gaston Morales",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "connect-multiparty": "^2.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.11",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "qs": "^6.9.4"
   }
 }
