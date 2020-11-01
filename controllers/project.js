@@ -141,23 +141,29 @@ let controller = {
 };
 
 async function Login() {
+    var resp
+    var data = qs.stringify({
+        'user': process.env.PASSTOKEN,
+        'password': process.env.USERTOKEN
+    });
+    var config = {
+        method: 'post',
+        url: 'https://democlever.ucontactcloud.com/Integra/resources/auth/UserLogin',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        data: data
+    };
 
-    let urlencoded = new URLSearchParams();
-    urlencoded.append("user", process.env.USERTOKEN);
-    urlencoded.append("password", process.env.PASSTOKEN);
-
-    let respi = await axios.post(`https://${process.env.ENVUC}.ucontactcloud.com/Integra/resources/auth/UserLogin`,
-        urlencoded,
-        {
-            headers:
-            {
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
-            }
+    axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
         });
 
-    return respi ? respi.data[2] : false;
+    //return respi ? respi.data[2] : false;
 
 
 }
