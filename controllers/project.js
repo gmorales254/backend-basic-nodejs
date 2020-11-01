@@ -114,7 +114,8 @@ let controller = {
     },
 
     dialerCall: async function (req, res) {
-        token = atob(req.params.token);
+        const buff = Buffer.from(req.params.token, 'base64');
+        const token = buff.toString('utf-8');
         return token ? res.status(200).send({ result: req.params.token }) : res.status(400).send({ result: 'ERROR' });
         /* if (token.split(':')[0] === process.env.USERTOKEN && token.split(':')[1] === process.env.PASSTOKEN) {
              let tokenito = await Login();
