@@ -118,8 +118,9 @@ let controller = {
         const token = buff.toString('utf-8');
         //return token ? res.status(200).send({ result: token }) : res.status(400).send({ result: 'ERROR' });
         if (token.split(':')[0] === process.env.USERTOKEN && token.split(':')[1] === process.env.PASSTOKEN) {
-            console.log('entre')
+
             let tokenito = await Login();
+            console.log("tokentio> " + tokenito)
             let resp = await Dial(tokenito, req.body.info, req.body.phone, req.body.dialer);
             console.log(resp);
             await CloseSession(tokenito);
