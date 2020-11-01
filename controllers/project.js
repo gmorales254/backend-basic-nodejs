@@ -157,13 +157,14 @@ async function Login() {
 
     axios(config)
         .then(function (response) {
-            console.log(JSON.stringify(response.data));
+            resp = JSON.stringify(response.data);
         })
         .catch(function (error) {
             console.log(error);
         });
 
-    //return respi ? respi.data[2] : false;
+    console.log(resp);
+    return resp.data[2];
 
 
 }
@@ -173,7 +174,7 @@ async function Dial(token, info, phone, dialer) {
     let par = new URLSearchParams();
     par.append("call", `{"calldate" : null, "campaign" : "${dialer}","destination": "${phone}","alternatives": "","agent" : "","data": "phone=${phone}:name=${info.name}:country=${info.country}:state=${info.state}:email=${info.email}:field1=How did you know? ${info.howdid}:field2=Want test? ${info.didyou}","source":"source","bulk" : false,"automatic" : true }`);
 
-    let dialersent = await axios.post(`https://${process.env.ENVUC}.ucontactcloud.com/Integra/resources/Dialers/DialerTask`, par,
+    let dialersent = await axios.post('https://democlever.ucontactcloud.com/Integra/resources/Dialers/DialerTask', par,
         {
             headers:
             {
