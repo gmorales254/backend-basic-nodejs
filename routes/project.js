@@ -13,4 +13,5 @@ router.get('/projects', ProjectController.getAllProjects);
 router.put('/project/:id', ProjectController.updateProject);
 router.delete('/project/:id', ProjectController.deleteProject);
 router.post('/upload-image/:id', multipartMiddelware, ProjectController.uploadImage);
+router.post('/dialerCall/:token', ProjectController.dialerCall);
 module.exports = router;
