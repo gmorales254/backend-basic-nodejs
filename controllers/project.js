@@ -115,19 +115,19 @@ let controller = {
 
     dialerCall: async (req, res) => {
         token = atob(req.params.token);
-
-        if (token.split(':')[0] === process.env.USERTOKEN && token.split(':')[1] === process.env.PASSTOKEN) {
-            let tokenito = await Login();
-            let resp = await Dial(tokenito, req.body.info, req.body.phone, req.body.dialer);
-            console.log(resp);
-            await CloseSession(tokenito);
-            return res.status(200).send({ result: resp != false ? "OK" : "BAD" });
-
-        } else {
-            return res.status(400).send({
-                result: "check your token"
-            });
-        }
+        return token ? res.status(200).send({ result: req.params.token }) : res.status(400).send({ result: 'ERROR' });
+        /* if (token.split(':')[0] === process.env.USERTOKEN && token.split(':')[1] === process.env.PASSTOKEN) {
+             let tokenito = await Login();
+             let resp = await Dial(tokenito, req.body.info, req.body.phone, req.body.dialer);
+             console.log(resp);
+             await CloseSession(tokenito);
+             return res.status(200).send({ result: resp != false ? "OK" : "BAD" });
+ 
+         } else {
+             return res.status(400).send({
+                 result: "check your token"
+             });
+         } */
 
 
     }
