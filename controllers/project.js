@@ -157,6 +157,7 @@ async function Login() {
 
     axios(config)
         .then(function (response) {
+            console.log(response);
             resp = JSON.stringify(response.data);
         })
         .catch(function (error) {
@@ -164,7 +165,7 @@ async function Login() {
         });
 
     console.log(resp);
-    return resp.data[2];
+    return resp[2];
 
 
 }
