@@ -144,7 +144,7 @@ async function Login() {
     urlencoded.append("user", process.env.USERTOKEN);
     urlencoded.append("password", process.env.PASSTOKEN);
 
-    let respi = await axios.post(`https://${ENVUC}.ucontactcloud.com/Integra/resources/auth/UserLogin`,
+    let respi = await axios.post(`https://${process.env.ENVUC}.ucontactcloud.com/Integra/resources/auth/UserLogin`,
         urlencoded,
         {
             headers:
@@ -165,7 +165,7 @@ async function Dial(token, info, phone, dialer) {
     let par = new URLSearchParams();
     par.append("call", `{"calldate" : null, "campaign" : "${dialer}","destination": "${phone}","alternatives": "","agent" : "","data": "phone=${phone}:name=${info.name}:country=${info.country}:state=${info.state}:email=${info.email}:field1=How did you know? ${info.howdid}:field2=Want test? ${info.didyou}","source":"source","bulk" : false,"automatic" : true }`);
 
-    let dialersent = await axios.post('https://democlever.ucontactcloud.com/Integra/resources/Dialers/DialerTask', par,
+    let dialersent = await axios.post(`https://${process.env.ENVUC}.ucontactcloud.com/Integra/resources/Dialers/DialerTask`, par,
         {
             headers:
             {
